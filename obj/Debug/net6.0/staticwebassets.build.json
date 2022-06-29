@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cIw3EIV0xFplA8KP8zid5jfMPkwMoyGu+Nw5zB+Z1C0=",
+  "Hash": "WqqTlMjV0N2qtma/3eOmeLfqSnJ4FfYW2ebffCYEeJc=",
   "Source": "RandomTextCase",
   "BasePath": "_content/RandomTextCase",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/imac-kce/Projects/RandomTextCase/RandomTextCase/obj/Debug/net6.0/scopedcss/projectbundle/RandomTextCase.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/imac-kce/Projects/RandomTextCase/RandomTextCase/wwwroot/.DS_Store",
+      "SourceId": "RandomTextCase",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac-kce/Projects/RandomTextCase/RandomTextCase/wwwroot/",
+      "BasePath": "_content/RandomTextCase",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
     },
     {
       "Identity": "/Users/imac-kce/Projects/RandomTextCase/RandomTextCase/wwwroot/css/site.css",

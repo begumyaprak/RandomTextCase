@@ -25,25 +25,28 @@ namespace RandomTextCase.Controllers
         // GET: /<controller>/
         public IActionResult RandomText()
         {
-            return View();
+            //ViewBag.Words = _userRepository.GetList();
+
+
+            var model = new TextViewModel();
+            model.input = new Input();
+            model.list = _userRepository.GetList();
+            return View(model);
         }
 
 
 
         [HttpPost]
-        public IActionResult RandomText(Input text)
+        public IActionResult RandomText(TextViewModel model)
         {
 
-            if (string.IsNullOrEmpty(text.inputText))
+            if (string.IsNullOrEmpty(model.input.inputText))
             {
                 return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, Message = "input text can not null!" });
             }
 
-            stringToIntValue = Int32.Parse(text.inputText);
+            stringToIntValue = Int32.Parse(model.input.inputText);
 
-            List<Input> randomMetinler = new List<Input>();
-
-           
 
             var allowedChars = "abcçdefgğhiıjklmnoöprsştuüvyz";
 
@@ -59,10 +62,10 @@ namespace RandomTextCase.Controllers
                 }
                 string charToString = new string(chars);
 
-                text.inputText = charToString;
+                model.input.inputText = charToString;
 
                 /// db ye charToString kaydet.
-                var response = _userRepository.InsertData(text);
+                var response = _userRepository.InsertData(model.input);
 
                 if (response.Success)
                 {
@@ -71,13 +74,16 @@ namespace RandomTextCase.Controllers
                 }
                 else
                 {
-                    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, Message = response.Message });
+                    
+                    
+                    return View("Error",new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, Message = response.Message });
                 }
                
 
             }
-
-            return View();
+            model.input = new Input();
+            model.list = _userRepository.GetList();
+            return View(model);
         }
 
        

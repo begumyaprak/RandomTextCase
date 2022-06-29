@@ -96,6 +96,47 @@ namespace RandomTextCase.SqlHelper
             
 
         }
+
+       public ResponseViewModel UpdateData([Bind("inputText")] Input entity)
+        {
+
+            var connectionString = _connectionsStringHelper.GetConnectionString();
+
+            MySqlConnection conn = new MySqlConnection();
+
+            conn.ConnectionString = connectionString;
+
+            try
+            {
+                if(conn.State == System.Data.ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.CommandText = @"UPDATE `test`.`RandomText` SET `inputText` = 'sadsa' WHERE (@TextID = 2)";
+                cmd.Parameters.AddWithValue("@TextID", entity.inputText);
+                cmd.Connection = conn;
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result > 0)
+                {
+                    return new ResponseViewModel { Message = "Data inserted.", Success = true };
+                }
+                else
+                {
+                    return new ResponseViewModel { Message = "Something went wrong", Success = false };
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseViewModel { Message = ex.ToString(), Success = false };
+            }
+
+        }
     }
 }
 

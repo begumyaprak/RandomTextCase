@@ -3,25 +3,75 @@
     ViewData["Title"] = "RandomText";
 }
 
-@model RandomTextCase.Models.Input
+@model RandomTextCase.Models.TextViewModel
+
+
+
 
 <style>
-
-
-    .height-14 {
+     .height-14 {
         height: 12rem !important;
     }
 </style>
+
+
 <div class="py-5">
     <h4 class="mb-3 text-center">Random Number to Text</h4>
-    
 </div>
+
+
 @(ViewBag.Message)
-<form asp-action="RandomText" asp-controller="RandomText" method="post">    
-    <input type="text" asp-for="inputText" placeholder="Type Number between 1-50" />
-    <span asp-validation-for="inputText"></span> <br />
+
+<form asp-action="RandomText" asp-controller="RandomText" method="post">
+    <input type="text" asp-for="@Model.input.inputText" placeholder="Type Number between 1-50" />
+    <span asp-validation-for="@Model.input.inputText"></span> <br />
 
 
-    <button type="submit">Send</button>
+    <button type="submit">Send</button> <br />
 
 </form>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Text</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        
+             @foreach (var item in Model.list)
+
+
+              {
+
+                <tr>
+                    <td>@item.TextID</td>
+                    <td>@item.inputText</td>
+
+                </tr>
+
+              }
+
+     
+
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>Text</th>
+            
+        </tr>
+    </tfoot>
+</table>
+
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('#example').DataTable();
+    });
+    </script>
+}
